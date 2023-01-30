@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<a href="/auth/signup">회원가입</a>
+	${userId }
+	<hr>
+	${social }
 </body>
 </html>

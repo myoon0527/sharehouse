@@ -1,12 +1,15 @@
 let index ={
 	init: function(){
-		$("#save_btn").on("click",()=>{
+		$("#signup-btn").on("click",()=>{
+			if(checkvalidation()){
+				
 			this.save();
+			}
 		});
 	},
 	save:function(){
 		let date={
-			username:$("#id").val(),
+			username:$("#rid").val(),
 			password:$("#password").val(),
 			email:$("#email").val(),
 			phonenumber:$("#phonenumber").val()

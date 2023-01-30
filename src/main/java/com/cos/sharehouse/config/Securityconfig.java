@@ -14,7 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.cos.sharehouse.config.auth.PrincipalDetailService;
 
 
-
 @Configuration //빈등록(Ioc관리)
 @EnableWebSecurity //시큐리티 필터가 등록된다. (설정을 여기서)
 @EnableGlobalMethodSecurity(prePostEnabled = true) // 특정 주소로 접근을 하면 권한 및 인증을 미리 체크하겠다는 의미
@@ -44,7 +43,7 @@ public class Securityconfig extends WebSecurityConfigurerAdapter{
 		http
 			.csrf().disable() // csrf토큰 비활성화(테스트시 걸어두는게 좋음)
 			.authorizeRequests()
-			.antMatchers("/main","/","/auth/**","/js/**","/css/**","/api/**")//권한 설정
+			.antMatchers("/main","/","/auth/**","/js/**","/css/**","/api/**","/img/**","/oauth/**")//권한 설정
 			.permitAll()
 			.anyRequest()//이게 아닌 다른 모든 요청은 
 			.authenticated()//인증이 필요
@@ -52,7 +51,11 @@ public class Securityconfig extends WebSecurityConfigurerAdapter{
 			.formLogin()
 			.loginPage("/auth/loginForm")
 			.loginProcessingUrl("/auth/loginProc")
-			.defaultSuccessUrl("/");
-			//.failureUrl("로그인 실패 후 요청 페이지")
+			.defaultSuccessUrl("/")
+//			.failureUrl("/");
+		.and()
+        	.logout()
+        	.logoutSuccessUrl("/") // 로그아웃 성공시 리다이렉트 주소
+        	.invalidateHttpSession(true); // 로그아웃 이후 세션 전체 삭제 여부
 	}
 }

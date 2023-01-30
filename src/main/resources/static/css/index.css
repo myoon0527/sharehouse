@@ -1,0 +1,109 @@
+*{padding: 0;margin: 0;user-select: none;}
+body{
+  width: 100%;
+  
+}
+.index_header{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  position: fixed;
+  z-index: 100;
+  background-color: rgba(128, 128, 128, 0.301);
+}
+.index_header .logo{
+  width: 200px;
+}
+.right{
+ display: flex;
+ position: absolute;
+ right: 0;
+ top: 14px;
+}
+.right .nav{
+  width: 150px;
+  text-align: center;
+
+}
+.nav a{
+  
+  text-decoration: none;
+  color:black;
+  font-weight: 800;
+  font-size: larger;
+}
+
+.index_page{
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.index_page:nth-child(1){
+  background-image: url(/img/beach.jpg);
+  
+}
+.index_page:nth-child(2){
+  background-image: url(/img/lost.jpg);
+}
+.index_page:nth-child(3){
+  background-image: url(/img/santorini.jpg);
+}
+.index_page:nth-child(4){
+  background-image: url(/img/travel.jpg);
+}
+.index_page:last-child{
+  background-image: url(/img/san-francisco.jpg);
+}
+.index_page:last-child::before{
+content: '';
+background:linear-gradient(to right,gray,transparent);
+position: absolute;
+right: 50%;
+height:100vh;
+width: 50%;
+}
+.index_page_btn{
+  position: absolute;
+  top: 40%;
+  left: 25%;
+}
+.index_page_btn_a {
+  width: 250px;
+  box-sizing: border-box;
+  
+  border: 1px solid rgba(128, 128, 128, 0.500);
+  border-radius: 15px;
+  margin: 10px;
+}
+.index_page_btn_a:hover{
+  background-color: rgba(128, 128, 128, 0.692);
+}
+.index_page_btn_a a{
+  display:block;
+  width:100%;
+  padding: 25px;
+ text-decoration: none;
+ color: white;
+ font-size: larger;
+ font-weight: 800
+}
+.index_pagetext{
+  position: absolute;
+  top: 40%;
+  left: 25%;
+  font-size: 2em;
+  color:black;
+  opacity: 0;
+  transition: all 2s;
+  
+}
+
+@keyframes up{
+  0%{
+    transform: translateY(+30px);
+  }
+  100%{
+    transform: translateY(0);
+  }
+}

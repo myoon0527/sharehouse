@@ -53,5 +53,6 @@ public class Users {
 	@Enumerated(EnumType.STRING)
 	private CurrentType type;//상태 (기본, 임시 정지, 영구정지) 
 	
+	private String social;
 	
 }

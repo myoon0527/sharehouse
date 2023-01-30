@@ -9,5 +9,6 @@ import com.cos.sharehouse.model.Users;
 public interface userRepository extends JpaRepository<Users,Integer> {
 
 	Optional<Users> findByUsername(String username);
-
+	//count 쓰기
+	
 }
