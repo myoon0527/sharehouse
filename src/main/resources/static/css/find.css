@@ -1,0 +1,33 @@
+*{
+  padding: 0;
+  margin: 0;
+  overflow:hidden;
+  user-select:none;
+}
+
+body{
+	  background-color: burlywood;
+	  display:flex;
+	  justify-content: center;
+	  
+}
+.finduserid-container{
+	
+  width: 70vw;
+  height: 70vh;
+	display:block;
+	margin-top:10%;
+  color:rgb(78, 78, 78);
+}
+.finduserid-fromemail{
+  padding: 15px;
+}
+.findinputbox{
+  width: 250px;
+  padding:0.5em;
+}
+.Certiy-btn{
+  width:267px;
+  padding:0.5em 0;
+  margin:1em 0;
+}
