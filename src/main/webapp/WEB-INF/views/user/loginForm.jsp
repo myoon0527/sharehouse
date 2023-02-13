@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
+ <%
+        SecureRandom random = new SecureRandom();
+        String state = new BigInteger(130, random).toString();
+        session.setAttribute("state", state);
+        %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -30,14 +37,20 @@
         </form>
       </div>
       <div class="helpbox">
-        <div class="signup"><a href="/auth/signup">회원가입</a></div>
-        <div class="findid-pw"><a href="">아이디/비밀번호 찾기</a></div>
+        <div class="signup"><a href="/auth/signup" class="cursor-on">회원가입</a></div>
+        <div class="findid-pw"><a onclick="openfind()" class="cursor-on">아이디/비밀번호 찾기</a></div>
       </div>
       <div class="social">
-        <div class="social-login naver"></div>
-        <div class="social-login google"></div>
-        <div class="social-login kakao"><a href="https://kauth.kakao.com/oauth/authorize?client_id=bc3d1da7dfe8afb92b61f8f94ad85623&redirect_uri=http://localhost:8006/oauth/kakao&response_type=code"></a></div>
+        <div class="social-login naver"><a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=hDfVLGjHY3Pm8HsywMlG&redirect_uri=http://localhost:8006/oauth/naver&state="></a></div>
+        <div class="social-login kakao"><a href="https://kauth.kakao.com/oauth/authorize?client_id=bc3d1da7dfe8afb92b61f8f94ad85623&redirect_uri=http://localhost:8006/oauth/kakao&response_type=code&prompt=login"></a></div>
       </div>
     </div>
+    <script>
+    function openfind(){
+	    window.open( "/auth/finduserwindow", "아이디찾기", "width=500, height=500, top=50, left=50" );
+    	
+    }
+    
+    </script>
   </body>
 </html>

@@ -19,6 +19,8 @@ public class PrincipalDetailService implements UserDetailsService{
 				.orElseThrow(()->{
 					return new UsernameNotFoundException("해당사용자를 찾을 수 없습니다."+username);
 				});
+		System.out.println("로그인 유저 : "+principal.getUsername());
+		System.out.println("로그인 유저 principal : "+new PrincipalDetail(principal).getUsername());
 		return new PrincipalDetail(principal);
 	}
 

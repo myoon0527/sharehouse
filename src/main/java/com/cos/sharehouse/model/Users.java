@@ -36,12 +36,14 @@ public class Users {
 	private int id;
 	@Column(nullable=false, length=100,unique = true)
 	private String username; //아이디
+	@Column(length=100)
+	private String nickname; //유저이름 ,별명
 	@Column(nullable=false, length=100)
 	private String password; //비밀번호
-	@Column(nullable=false, length=100) 
+	@Column(length=100) 
 	private String email; // 이메일 인증번호
-	@Column(nullable=false, length=100)
-	private int phonenumber; // 전화번호 실명인증 
+	@Column( length=100)
+	private String phonenumber; // 전화번호 실명인증 
 	@Lob
 	private String profileimage; //프로필 이미지 
 	@ColumnDefault("0")
@@ -54,5 +56,8 @@ public class Users {
 	private CurrentType type;//상태 (기본, 임시 정지, 영구정지) 
 	
 	private String social;
+	
+	@Enumerated(EnumType.STRING)
+	private authType userauth;
 	
 }

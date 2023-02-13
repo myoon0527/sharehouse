@@ -83,36 +83,41 @@
 }
 .social{
   width: 450px;
+  height:fit-content;
+  display:flex;
+  justify-content:space-around;
   margin:0 auto;
-  display: flex;
-  justify-content: center;
+  margin-top:40px;
+ 
 }
 .social-login{
   
-  width: 42px;
-  height: 42px;
+	width:204px;
+  height:50px;
   background-color: inherit;
   border: none;
+  border-radius:5px;
   cursor: pointer;
 }
 .naver{
-  background-size: 42px 42px;
-  background-image: url(/img/ico_sns_naver@2x.png);
+  background-image: url(/img/naver_login.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.google{
-  background-size: 42px 42px;
-  background-image: url(/img/ico_sns_google@2x.png);
-  margin-left: 14px;
-}
+
 .kakao{
-  background-size: 42px 42px;
-  background-image: url(/img/ico_sns_kakao@2x.png);
-  margin-left: 14px;
+  background-image: url(/img/kakao_login3.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+ 
 }
 .kakao a,
-.google a,
 .naver a{
 	display:block;
 	width:100%;
 	height:100%;
+}
+
+.cursor-on{
+	cursor:pointer;
 }

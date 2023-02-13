@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	${userId }
-	<hr>
-	${social }
+로그인 실패
 </body>
 </html>

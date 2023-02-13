@@ -7,20 +7,24 @@
   display: flex;
   flex-wrap: nowrap;
   margin: 0 auto;
+  background-color: rgba(0, 0, 255, 0.021);
 }
 .mypage-nav{
   width: 300px;
-  height: 900px;
+  height: 850px;
   list-style-type: none;
   position: fixed;
   margin-top: 50px;
-
+	background-color:rgba(0, 0, 255, 0.021);
+	border-radius: 25px;
+	color: rgb(49, 7, 49);
 }
 .userinfo{
   height: 250px;
-  background-color: gray;
+  
   text-align: center;
   border-radius: 25px;
+  margin-bottom:10px;
 }
 .userinfo a{
   display: block;
@@ -54,12 +58,18 @@
 .mypage-nav-footer{
   position: absolute;
   bottom:10px;
+  width:100%;
   display: flex;
   justify-content: center;
 }
 .mypage-nav-footer li{
   font-size: small;
   width:80px;
+}
+.mypage-nav-footer a{
+	text-decoration:none;
+	color:black;
+	font-size:larger;
 }
 .mypage-container{
   margin-left:350px;
@@ -79,6 +89,13 @@
   width: 100%;
   display: flex;
   justify-content: end;
+}
+.message-search button a{
+	text-decoration:none;
+	color:black;
+	display:block;
+	width:100%;
+	height:100%;
 }
 .message-list{
   width: 100%;
@@ -105,7 +122,7 @@
   width:628px;
 }
 .message-list li div:nth-child(4){
-  width:80px;
+  width:150px;
 }
 .messagecontent{
   text-overflow:ellipsis;
@@ -138,13 +155,13 @@
 .userupdate-table{
   margin-top: 10px;
   width: 100%;
-  height: 600px;
+  height: 500px;
   position: relative;
 }
 .userupdate-table table{
   width: 750px;
   position: absolute;
-  top: 200px;
+  top: 150px;
   left: 50px;
   border: 1px solid gray;
 }
@@ -161,7 +178,7 @@
 }
 .update-btn{
   position: absolute;
-  bottom:50px;
+  bottom:100px;
   left: 45%;
   display: block;
  padding: 0.5em;
@@ -187,3 +204,129 @@
   width: 750px;
   border: 1px solid gray;
 }
+.profileimg-preview{
+	width:150px;
+	height:150px;
+}
+.profileimg-preview img{
+	width:100%;
+	height:100%;
+}
+.userout h1{
+  margin-left:15px;
+}
+.outmessagebox{
+  width: 750px;
+ 
+}
+.outmessagebox_text{
+  width: 750px;
+  height: 300px;
+  overflow: scroll;
+  
+  border: 1px solid gray;
+}
+.outcheck{
+  display: block;
+  float: right;
+}
+.outcheck button{
+  padding:0.5em 2em;
+  background-color: gray;
+  color:white;
+  border:none;
+}
+.auth-box h1{
+  margin-left:15px;
+}
+.auth-box-form{
+  margin-top: 10px;
+  width: 100%;
+  height: 300px;
+  position: relative;
+}
+.auth-box-table{
+	width: 750px;
+	  border: 1px solid gray;
+	  display:block;
+	  margin:0 auto;
+	margin-top:30px;
+	  
+}
+.auth-box-table table th{
+	width:200px;
+	background-color: rgba(128, 128, 128, 0.1);
+	padding:0.5em 0;
+}
+#questionmark{
+	width:15px;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+    
+.tooltip .tooltip-top {
+  width: 180px;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -60px;
+  padding:5px;
+}
+
+.tooltip .tooltip-top::after {
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-color: black transparent transparent transparent;
+}
+	
+	.message-container{
+  width:100%;
+  height:500px;
+  
+}
+.messageheader{
+  height:50px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid gray;
+}
+.messageheader button{
+  padding:5px;
+  width: 50px;
+  margin-left: 10px;
+}
+.messageheader a {
+  text-decoration: none;
+  color: rgba(128, 128, 128, 0.7);
+  margin-left: 10px;
+  user-select: none;
+}
+.messageinfo{
+  height: 80px;
+  display: flex;
+  align-content: center;
+  border-bottom: 1px solid gray;
+}
+.messagecontents{
+  padding:15px;
+}
+

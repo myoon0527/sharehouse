@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,13 +18,18 @@
         <input class="signupbox idinput" type="text" id="id" placeholder="*아이디" required><button type="button" class="idcheck-btn">중복확인</button>
         <input type="hidden" type="text" id="rid"required>
         <p id="idtext" class="red"></p>
+        <p id="idtext2" class="blue"></p>
+        <input class="signupbox" type="text" placeholder="사용자 이름" id="usernick" required>
         <input class="signupbox" type="password" id="password" placeholder="*비밀번호(영문,숫자,특수문자)" required>
         <input class="signupbox" type="password" id="passwordck" placeholder="*비밀번호 확인" required>
         <p id="pwdtext" class="red"></p>
+        <p id="pwdtext2" class="blue"></p>
         <input class="signupbox" type="text" id="email"placeholder="*이메일" required>
         <p id="emailtext" class="red"></p>
+        <p id="emailtext2" class="blue"></p>
         <input class="signupbox" type="text" id="phonenumber" placeholder="*전화번호" required>
         <p id="phonenumtext" class="red"></p>
+        <p id="phonenumtext2" class="blue"></p>
       
       <hr class="margin-hr">
       <div class="terms">

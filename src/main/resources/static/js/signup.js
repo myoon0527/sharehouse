@@ -36,27 +36,51 @@ function checkvalidation(){
         return false;
     }else if(numform.test($("#phonenumber").val())==false){
         $("#phonenumtext").text("숫자만 입력가능합니다.");
+        return false;
     }
     else{
         $("#phonenumtext").text("");
     }
     if($("#checklist").is(":checked")==false){
         alert("약관에 동의해 주세요")
+        return false;
     }
     return true;
 }
 $(".idcheck-btn").click(()=>{
-    $("#rid").val($("#id").val())/**id 검사한 값 넣어주기 */
-    $("#idtext").text("");
+	let id = $("#id").val();
+	$.ajax({
+		url:"/api/check/"+id,
+		type:"POST",
+		dateType:"json"
+	}).done(function(res){
+		if(res.data==0){
+			 $("#idtext").text("");
+		 $("#idtext2").text("등록가능아이디 입니다.");
+	     $("#rid").val($("#id").val())/**id 검사한 값 넣어주기 */
+		}else{
+			$("#idtext").text("등록이 불가능한 아이디입니다.");
+			
+		}
+		 
+	}).fail(function(error){
+		alert(JSON.stringify(error));
+	})
+	setTimeout(() => {
+    $("#idtext2").text("");
+
+        }, 1000);
 
 })
 $("#passwordck").keyup(()=>{
     if($("#passwordck").val()!==$("#password").val()){
+	        $("#pwdtext2").text("");
         $("#pwdtext").text("비밀번호가 일치하지 않습니다.");
     }else{
-        $("#pwdtext").text("비밀번호가 일치합니다.");
+		$("#pwdtext").text("");
+        $("#pwdtext2").text("비밀번호가 일치합니다.");
         setTimeout(() => {
-            $("#pwdtext").text("");
+            $("#pwdtext2").text("");
         }, 1000);
     }
 })
@@ -68,9 +92,10 @@ $("#email").keyup(()=>{
     if(emailform.test($("#email").val())==false){
         $("#emailtext").text("이메일형식이 올바르지 않습니다.");
     }else{
-        $("#emailtext").text("이메일형식에 일치합니다");
+		$("#emailtext").text("");
+        $("#emailtext2").text("이메일형식에 일치합니다");
         setTimeout(()=>{
-            $("#emailtext").text("");
+            $("#emailtext2").text("");
         },1000);
     }
 })
@@ -81,3 +106,32 @@ $("#phonenumber").keyup(()=>{
         $("#phonenumtext").text("");
     }
 })
+
+
+/**회원 정보변경 유효성 검사 */
+function updatecheckvalidation(){
+    
+	var emailform =  /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+	var numform = /^[0-9]+$/;
+	
+    if($("#pwd").val()==""){
+     	alert("비밀번호를 입력해주세요")
+        return false;
+    }
+    if($("#email").val()==""||emailform.test($("#email").val())==false){
+        alert("이메일을 정확히 입력해주세요")
+        return false;
+    }
+    if($("#phone").val()==""){
+       alert("전화번호를 입력해주세요")
+        return false;
+    }else if(numform.test($("#phone").val())==false){
+       alert("번호는 숫자만입력 가능합니다.")
+       return false
+    }
+    
+    
+    return true;
+}
+
+

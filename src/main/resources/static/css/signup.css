@@ -4,7 +4,7 @@
 }
 .signup-container{
   width: 500px;
-  height: 600px;
+  height: 650px;
   background-color: burlywood;
   border-radius: 20px;
   margin: 150px auto;
@@ -87,7 +87,7 @@
 }
 #modal .modal-window {
   background: white;
-  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  
   backdrop-filter: blur( 13.5px );
   -webkit-backdrop-filter: blur( 13.5px );
   border-radius: 10px;
@@ -127,5 +127,10 @@
 .red{
   color:red;
   font-size: small;
+ position: absolute;
+}
+.blue{
+	color:blue;
+	font-size: small;
  position: absolute;
 }

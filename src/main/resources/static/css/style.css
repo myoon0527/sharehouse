@@ -1,0 +1,341 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+li{
+  list-style-type: none;
+}
+
+header {
+  background-image: url("../images/background.jpg");
+  height: 70px;
+  background-size: 100% 100%;
+}
+
+nav {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+}
+
+.logo {
+  margin: 10px 0 0 20px;
+  color: white;
+  font-size: 35px;
+  font-weight: 800;
+}
+
+.menu ul {
+  margin: 15px 20px 0 0;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 30px;
+  list-style-type: none;
+ 
+}
+
+.menu ul a {
+  text-decoration: none;
+  color: white;
+  font-weight: 800;
+}
+
+.search__box {
+  width: 430px;
+  display: inline-block;
+  background-color: white;
+  padding: 20px 30px;
+  position: relative;
+  top: 50px;
+  left: 50px;
+  border-radius: 6px;
+  box-shadow: 0 2px 2px 0 rgb(214, 214, 214);
+}
+/* sda */
+
+#search1 {
+  display: flex;
+  align-items: center;
+}
+
+.search_info {
+  width: 500px;
+  height: 50px;
+  border: 1px solid rgb(223, 219, 219);
+  box-sizing: border-box;
+
+  margin: auto;
+  margin-top: 70px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 25px;
+  box-shadow: 0 2px 2px 0 rgb(181, 179, 179);
+
+}
+.search_info .search_info1 {
+  font-weight: bold;
+  text-align: center;
+  width: 25%;
+  height: 50%;
+  border-right: 1px solid rgb(182, 175, 175);
+
+} 
+
+.search_info .search_info2 {
+  height: 50%;
+}
+
+
+.search2_info {
+  width: 850px;
+  height: 70px;
+  border: 1px solid rgb(179, 177, 177);
+  background-color: white;
+  box-sizing: border-box;
+  margin: auto;
+  margin-top: 70px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 25px;
+  box-shadow: 0 2px 2px 0 rgb(250, 245, 245);
+}
+
+
+.search2_info input {
+  border: none;
+  background-color: white;
+} 
+
+.search2_info button {
+  background-color: white;
+  border: none;
+  text-align: left;
+}
+
+.search2_info_main {
+  font-weight: bold;
+  padding-left: 0px;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.search2_info_sub {
+  color:rgb(146, 138, 138);
+}
+
+
+#searchExecution {
+  border:0.5px white;
+  background-color: #FF385C;
+  width: 100px;
+  height: 50px;
+  color: white;
+  border-radius: 30px;
+  text-align: center;
+  line-height: 50px;
+}
+
+#searchExecution button {
+	color : white;
+	 background-color: #FF385C;
+	 font-size : 15px;
+}
+
+
+.search__input {
+  height: 45px;
+  width: 100%;
+  color: rgb(100,98,98);
+  font-size: 15px;
+  border: 1px solid rgb(230, 227, 227);
+}
+
+.search__button {
+  display: grid;
+  justify-content: end;
+  padding: 20px 0;
+}
+
+.search__button button{
+  background-color: #FF385C;
+  color: white;
+  width: 70px;
+  height: 45px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 6px;
+  border: 0;
+  cursor: pointer;
+}
+
+
+.info1 {
+  margin: 5px 0;
+  font-size: 13px;
+  color: grey;
+}
+
+.info1 img {
+  padding-left: 280px;
+}
+
+.info2 {
+  font-size: 16px;
+  font-weight: 600px;
+  color: rgb(60, 60, 60);
+}
+
+
+main {
+  /* margin: 30px 90px; */
+  margin: 0 auto;
+  width: 90%;
+
+}
+
+section {
+  margin: 30px 0;
+}
+
+.home__box {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  margin-top: 20px;
+}
+
+
+.home__img {
+  background-image: url("../images/home1.png");
+  height: 300px;
+  background-size: 100% 100%;
+}
+
+
+.count, .type {
+  font-size: 12px;
+}
+
+
+
+/* 보여줄 구간의 높이와 넓이 설정 */
+#slideShow{
+  width: 400px;
+  height: 300px;
+  position: relative;
+  margin: 10px auto;
+  overflow: hidden;   
+  /*리스트 형식으로 이미지를 일렬로 
+  정렬할 것이기 때문에, 500px 밖으로 튀어 나간 이미지들은
+  hidden으로 숨겨줘야됨*/
+}
+
+
+.slides{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1600px; /* 슬라이드할 사진과 마진 총 넓이 */
+  transition: left 0.5s ease-out; 
+  /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
+}
+
+/* 첫 번째 슬라이드 가운데에 정렬하기위해
+첫번째 슬라이드만 margin-left조정 */
+
+/* .slides li:first-child{
+  margin-left: 100px;
+} */
+
+/* 슬라이드들 옆으로 정렬 */
+.slides li:not(:last-child){
+  float: left;
+  /* margin-right: 100px; */
+}
+
+.slides li{
+  float: left;
+}
+
+.slides img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 10px;
+
+}
+
+.controller span{
+  position:absolute;
+  background-color: transparent;
+  color: black;
+  text-align: center;
+  border-radius: 50%;
+  padding: 10px 20px;
+  top: 43%;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+
+/* 이전, 다음 화살표에 마우스 커서가 올라가 있을때 */
+.controller span:hover{
+  background-color: rgba(128, 128, 128, 0.11);
+}
+
+.prev{
+  left: 10px;
+  /* display: none; */
+}
+
+.prev:hover{
+  transform: translateX(-5px);
+  display: block;
+}
+
+.next{
+  right: 10px;
+}
+
+
+.next:hover{
+  transform: translateX(5px);
+}
+
+
+#search1 button {
+  width: 80px;
+  height: 45px;
+  border-radius: 10px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  margin: auto;
+  margin-top: 70px;
+  margin-right: 20px;
+  background-color: white;
+}
+
+#search1 button > .filter {
+  padding-bottom: 10px;
+}
+
+#map_mark {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  border: none;
+  border-radius: 16px;
+  background: rgb(7, 7, 7);
+  color: white;
+  padding: 12px;
+  font-weight: bold;
+  box-shadow: 0px 5px 15px gray;
+  cursor: pointer;
+}
