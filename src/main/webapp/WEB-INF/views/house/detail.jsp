@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <sec:authorize access="isAuthenticated()">
@@ -73,11 +74,61 @@
   
       <div>
         <h3>숙소 편의시설</h3>
-        <p><a href="#ex1" rel="modal:open">편의시설 모두 보기</a></p>
-        <div id="ex1" class="modal">
-          <p>안녕하세요</p>
+        <c:set var="amenity" value="${house.amenities}"/>
+        <c:set var="amenity_split" value="${fn:split(amenity,',')}"/>
+        
+        <div class="amenities_area">
+        	<c:forEach var="am" items="${amenity_split}">
+        		<c:choose>
+					<c:when test="${am eq 'wifi'}">
+						<div class="amenities_box">
+							무선 인터넷
+						</div>
+					</c:when>
+					<c:when test="${am eq 'tv'}">
+						<div class="amenities_box">
+							TV
+						</div>
+					</c:when>
+					<c:when test="${am eq 'kitchen'}">
+						<div class="amenities_box">
+							주방
+						</div>
+					</c:when>
+					<c:when test="${am eq 'washer'}">
+						<div class="amenities_box">
+							세탁기
+						</div>
+					</c:when>
+					<c:when test="${am eq 'free-p'}">
+						<div class="amenities_box">
+							건물 내 무료 주차
+						</div>
+					</c:when>
+					<c:when test="${am eq 'charged-p'}">
+						<div class="amenities_box">
+							건물 내 유료 주차
+						</div>
+					</c:when>
+					<c:when test="${am eq 'a/c'}">
+						<div class="amenities_box">
+							에어컨
+						</div>
+					</c:when>
+					<c:when test="${am eq 'pool'}">
+						<div class="amenities_box">
+							수영장
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="amenities_box">
+							바비큐 그릴
+						</div>
+					</c:otherwise>
+				</c:choose>		
+        	</c:forEach>
         </div>
-        <hr>
+      	<hr>
       </div>
   
       <div>
@@ -172,13 +223,13 @@
         </div>
         <div class="">
           <p class="float-left">서비스 수수료</p>
-          <p class="float-right">₩가격</p>
+          <p class="float-right ">₩<b class="serviceFee"></b></p>
         </div>
 
         <div class="totla">
           <hr>
           <p class="float-left bold">총 합계</p>
-          <p class="float-right bold">₩총 가격</p>
+          <p class="float-right bold">₩<b class="paymentFee"></b></p>
         </div>
       </div>
     </div>
@@ -186,25 +237,35 @@
     <div class="review" id="review">
       <hr>
       <h3>$point . 후기 $review-count개</h3>
+      <span id="houseId" hidden>${house.id}</span>
+      <span id="userId" hidden>${principal.user.id}</span>
+      <c:choose>
+       	<c:when test="${empty principal}">
+       		<a href="/detail/${house.id}">
+       			<div class="review_input"> 
+	            	<input type="text" class="" id="review-content" placeholder="댓글을 입력해주세요">
+	            	<button class="btn" id="btn-review-save">등록</button>
+             		<hr>
+             	</div>
+       		</a>
+       	</c:when>
+       	<c:otherwise>
+       		<div class="review_input"> 
+	            <input type="text" class="" id="review-content" placeholder="댓글을 입력해주세요">
+	            <button class="btn float-right" id="btn-review-save">등록</button>
+          		<hr>
+          	</div>
+       	</c:otherwise>    	
+       </c:choose>
       <div class="review-content">
-        <div class="review-box">
-          <img src="img/01.png" alt="유저프로필사진" class="profile float-left">
-          <p class="bold mb-0">$user-name</p>
-          <p>작성날짜</p>
-          <p>깔끔하고 좋아요</p>
-        </div>
-        <div class="review-box">
-          <img src="img/c1.png" alt="유저프로필사진" class="profile float-left">
-          <p class="bold mb-0">$user-name</p>
-          <p>작성날짜</p>
-          <p>친절하시고 숙소가 깨끗해요</p>
-        </div>
-        <div class="review-box">
-          <img src="img/c1.png" alt="유저프로필사진" class="profile float-left">
-          <p class="bold mb-0">$user-name</p>
-          <p>작성날짜</p>
-          <p>친절하시고 숙소가 깨끗해요</p>
-        </div> 
+      	<c:forEach var="review" items="${house.review}">
+      		<div class="review-box">
+	          <img src="${review.users.profileimage}" alt="유저프로필사진" class="profile float-left">
+	          <p class="bold mb-0">${review.users.nickname}</p>
+	          <p><fmt:formatDate value="${review.createDate}" pattern="yyyy-MM-dd" /></p>
+	          <p>${review.content}</p>
+	        </div>
+      	</c:forEach> 
       </div>
       <button>리뷰 전체 보기</button>
     </div>

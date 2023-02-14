@@ -11,14 +11,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cos.sharehouse.dto.uploadDto;
 import com.cos.sharehouse.model.House;
+import com.cos.sharehouse.model.Review;
 import com.cos.sharehouse.model.Users;
 import com.cos.sharehouse.repository.houseRepository;
+import com.cos.sharehouse.repository.reviewRepository;
 
 @Service
 public class houseService {
 	
 	@Autowired
 	private houseRepository houseRepository;
+	
+	@Autowired
+	private reviewRepository reviewRepository;
 	
 	//사진 등록
 	@Transactional
@@ -77,5 +82,18 @@ public class houseService {
 				.orElseThrow(()->{
 					return new IllegalArgumentException("글 상세보기 실패: 아이디를 찾을 수 없습니다.");
 				});
+	}
+	
+	//리뷰 작성
+	@Transactional
+	public void writeReview(int id, Review requestReview, Users user) {
+		House house = houseRepository.findById(id)
+				.orElseThrow(()->{
+					return new IllegalArgumentException("리뷰 작성 실패: 게시글 아이디를 찾을 수 없습니다.");
+				});
+		requestReview.setUsers(user);
+		requestReview.setHouse(house);
+		reviewRepository.save(requestReview);
+		reviewRepository.plusReviewCount(id);
 	}
 }

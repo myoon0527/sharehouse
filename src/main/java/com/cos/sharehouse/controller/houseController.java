@@ -26,4 +26,12 @@ public class houseController {
 		model.addAttribute("house", houseService.detail(id));
 		return "/house/detail";
 	}
+	
+	//숙소 자세히 보기
+	@GetMapping("/detail/{id}")
+	public String review(@PathVariable int id, Model model) {
+		model.addAttribute("house", houseService.detail(id));
+		return "/house/detail";
+	}
+	
 }

@@ -1,5 +1,7 @@
 package com.cos.sharehouse.model;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,4 +46,7 @@ public class Review {
 	@ManyToOne
 	@JoinColumn(name="Users")
 	private Users users;
+	
+	@CreationTimestamp
+	private Timestamp createDate;
 }

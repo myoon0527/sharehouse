@@ -21,6 +21,10 @@ $(document).ready(function($) {
   });
 });
 
+
+//요금 value
+let fare = document.querySelector('.houseFare').value;
+
 //일수 계산
 let input = document.querySelector(".input");
 
@@ -30,21 +34,17 @@ input.onchange = function(e) {
   const date2 = new Date(ddd.slice(13,23));
 
   const diffDate = Math.abs((date1.getTime() - date2.getTime()) / (1000 * 60 * 60 * 24));
-
-  console.log(date1);
-  console.log(date2);
-  console.log(diffDate+"일");
-  console.log(document.querySelector('.houseFare').value);
  
   let x = document.getElementById('schedule');
   let y = document.querySelector('.schedule');
   x.innerText = diffDate;
   y.innerText = diffDate;
   
-  let fare = document.querySelector('.houseFare').value;
-  let total = document.querySelector('.total_fare');
-  total.innerText = fare*diffDate;
- 	
+  
+  let t = document.querySelector('.total_fare');
+  t.innerText = fare*diffDate;
+  
+  let total = parseFloat(fare*diffDate);
 	
   let z = document.getElementById('schedule2')
   z.innerText = date1.getFullYear() + "년 " + 
@@ -53,7 +53,23 @@ input.onchange = function(e) {
   	"~ " + date2.getFullYear() + "년 " + 
   	parseInt(date2.getMonth()+1) + "월 " + 
   	date2.getDate() + "일";
+  	
+  	//수수료 & 총가격 계산
+  	let fee = 0;
+  	
+  	fee = total * 0.15;
+  	let sf = document.querySelector('.serviceFee');
+  	
+  	sf.innerText = fee;
+  	
+  	let paymentFee = total + fee;
+  	let pf = document.querySelector('.paymentFee');
+  	
+  	pf.innerText = paymentFee;
 }
+
+
+
 
 //인원 수
 let number = document.querySelector(".guest");
@@ -116,4 +132,38 @@ child_minus.onclick = function(e) {
   document.getElementById('total-num').value = total;
 }
 
-
+let index={
+	init: function() {
+		$("#btn-review-save").on("click",()=>{
+			this.reviewSave();
+		});
+	},
+	
+	reviewSave: function() {
+		var id = $("#houseId").text();
+		var userid = $("#userId").text();
+		let data={
+			content: $("#review-content").val()
+		};
+		$.ajax({
+			type:"POST",
+			url:"/api/house/"+id+"/review",
+			data:JSON.stringify(data),
+			contentType:"application/json; charset=utf-8",
+			dataType:"json"
+		}).done(function(resp){
+			alert("작성 완료");
+			location.href="/auth/detail/"+id;
+		}).fail(function(error){
+			if(userid){
+				alert("내용을 입력해주세요");
+				console.log("userid: " + userid);
+				console.log("content: " + content);
+			}
+			else {
+				alert("로그인이 필요합니다.");
+			}
+		});
+	},
+}
+index.init();
