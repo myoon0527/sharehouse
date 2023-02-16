@@ -23,6 +23,7 @@ import com.cos.sharehouse.config.auth.PrincipalDetail;
 import com.cos.sharehouse.dto.ResponseDto;
 import com.cos.sharehouse.dto.uploadDto;
 import com.cos.sharehouse.model.Review;
+import com.cos.sharehouse.model.reserv;
 import com.cos.sharehouse.service.houseService;
 
 @RestController
@@ -74,6 +75,14 @@ public class houseApiController {
 	@PostMapping("/api/house/{id}/review")
 	public ResponseDto<Integer> reviewSave(@PathVariable int id, @RequestBody Review review, @AuthenticationPrincipal PrincipalDetail principal) {
 		houseService.writeReview(id, review, principal.getUser());
+		
+		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
+	}
+	
+	//예약
+	@PostMapping("/api/house/{id}/reserv")
+	public ResponseDto<Integer> reservSave(@PathVariable int id, @RequestBody reserv reserv, @AuthenticationPrincipal PrincipalDetail principal) {
+		houseService.saveReserv(id, reserv, principal.getUser());
 		
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 	}

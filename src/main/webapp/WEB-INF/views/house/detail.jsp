@@ -30,7 +30,13 @@
       <div class="title"><h2>${house.title}</h2></div>
       <div class="sub">
         <div>
-          <p style="float: left;">*4.86. <a href="#review" class="scroll-move">후기 21개</a>. <a href="#location" class="scroll-move">경기도,한국</a></p>
+       	  <c:set var="houseAddr" value="${house.addr}" />
+      	  <c:set var="si" value="${fn:split(houseAddr,' ')[0]}" />
+      	  <c:set var="gu" value="${fn:split(houseAddr,' ')[1]}" />
+      	  <span id="houseId" hidden>${house.id}</span>
+      	  <span id="userId" hidden>${principal.user.id}</span>
+      	  
+          <p style="float: left;">*4.86. <a href="#review" class="scroll-move">후기 ${house.reviewcount}개</a>. <a href="#location" class="scroll-move">${si},${gu}</a></p>
           <p style="float: right;"><a href="">공유하기</a></p>
           <p style="float: right;"><a href="">저장</a></p>
         </div>
@@ -132,16 +138,12 @@
       </div>
   
       <div>
-      	<c:set var="houseAddr" value="${house.addr}" />
-      	<c:set var="a" value="${fn:split(houseAddr,' ')[1]}" />
-        <h3>${a}에서 <b id="schedule"></b>박</h3>
+      	
+        <h3>${gu}에서 <b id="schedule"></b>박</h3>
         <div>
         	<p id="schedule2"></p>
         </div>
-        <img src="img/e1.png" alt="">
-        <img src="img/e1.png" alt="">
-        <img src="img/e1.png" alt="">
-        <img src="img/e1.png" alt="">
+        
       </div>
     </div>
     
@@ -149,7 +151,7 @@
       <div class="nav">
         <div>
           <p class="float-left"><b>₩${house.fare}</b>/박</p>
-          <p class="float-right ">*4.86 . <a href="#review" class="scroll-move">후기 21개</a></p>
+          <p class="float-right ">*4.86 . <a href="#review" class="scroll-move">후기 ${house.reviewcount}개</a></p>
         </div>
         <div>
           <form autocomplete="off">
@@ -213,7 +215,7 @@
           </div>
         </div>
         <div class="pt-16">
-          <button class="reservBtn">예약하기</button>
+          <button class="reservBtn" id="reservBtn">예약하기</button>
         </div>
 
         <div class="inline">
@@ -236,9 +238,7 @@
 
     <div class="review" id="review">
       <hr>
-      <h3>$point . 후기 $review-count개</h3>
-      <span id="houseId" hidden>${house.id}</span>
-      <span id="userId" hidden>${principal.user.id}</span>
+      <h3>$point . 후기 ${house.reviewcount}개</h3>
       <c:choose>
        	<c:when test="${empty principal}">
        		<a href="/detail/${house.id}">

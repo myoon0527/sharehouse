@@ -28,6 +28,11 @@ let fare = document.querySelector('.houseFare').value;
 //일수 계산
 let input = document.querySelector(".input");
 
+//String으로 날짜 저장
+let StrDate1 = "";
+let StrDate2 = "";
+
+
 input.onchange = function(e) {
   const ddd = document.getElementById('daterange').value;
   const date1 = new Date(ddd.slice(0,10));
@@ -40,6 +45,8 @@ input.onchange = function(e) {
   x.innerText = diffDate;
   y.innerText = diffDate;
   
+  StrDate1 = ddd.slice(0,10);
+  StrDate2 = ddd.slice(13,23);
   
   let t = document.querySelector('.total_fare');
   t.innerText = fare*diffDate;
@@ -137,6 +144,9 @@ let index={
 		$("#btn-review-save").on("click",()=>{
 			this.reviewSave();
 		});
+		$("#reservBtn").on("click",()=>{
+			this.reservSave();
+		});
 	},
 	
 	reviewSave: function() {
@@ -163,6 +173,27 @@ let index={
 			else {
 				alert("로그인이 필요합니다.");
 			}
+		});
+	},
+	
+	reservSave: function() {
+		var id = $("#houseId").text();
+		var userid = $("#userId").text();
+		let data={
+			checkIn: StrDate1,
+			checkOut: StrDate2
+		};
+		$.ajax({
+			type:"POST",
+			url:"/api/house/"+id+"/reserv",
+			data:JSON.stringify(data),
+			contentType:"application/json; charset=utf-8",
+			dataType:"json"
+		}).done(function(resp){
+			alert("예약 완료");
+			location.href="/auth/detail/"+id;
+		}).fail(function(error){
+			alert(JSON.stringify(error));
 		});
 	},
 }

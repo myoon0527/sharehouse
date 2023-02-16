@@ -102,4 +102,5 @@ public class House {
 	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.REMOVE)
 	@JoinColumn(name="Users")
 	private Users users;
+	
 }

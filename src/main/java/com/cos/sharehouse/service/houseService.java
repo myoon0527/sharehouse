@@ -13,7 +13,9 @@ import com.cos.sharehouse.dto.uploadDto;
 import com.cos.sharehouse.model.House;
 import com.cos.sharehouse.model.Review;
 import com.cos.sharehouse.model.Users;
+import com.cos.sharehouse.model.reserv;
 import com.cos.sharehouse.repository.houseRepository;
+import com.cos.sharehouse.repository.reservRepository;
 import com.cos.sharehouse.repository.reviewRepository;
 
 @Service
@@ -24,6 +26,9 @@ public class houseService {
 	
 	@Autowired
 	private reviewRepository reviewRepository;
+	
+	@Autowired
+	private reservRepository reservRepository;
 	
 	//사진 등록
 	@Transactional
@@ -95,5 +100,17 @@ public class houseService {
 		requestReview.setHouse(house);
 		reviewRepository.save(requestReview);
 		reviewRepository.plusReviewCount(id);
+	}
+	
+	//예약
+	@Transactional
+	public void saveReserv(int id, reserv requestReserv, Users user) {
+		House house = houseRepository.findById(id)
+				.orElseThrow(()->{
+					return new IllegalArgumentException("예약 실패: 게시글 아이디를 찾을 수 없습니다.");
+				});
+		requestReserv.setUsers(user);
+		requestReserv.setHouse(house);
+		reservRepository.save(requestReserv);
 	}
 }
