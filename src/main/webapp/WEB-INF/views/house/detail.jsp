@@ -244,7 +244,7 @@
        		<a href="/detail/${house.id}">
        			<div class="review_input"> 
 	            	<input type="text" class="" id="review-content" placeholder="댓글을 입력해주세요">
-	            	<button class="btn" id="btn-review-save">등록</button>
+	            	<button class="btn1" id="btn-review-save">등록</button>
              		<hr>
              	</div>
        		</a>
